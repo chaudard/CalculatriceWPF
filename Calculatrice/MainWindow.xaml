@@ -5,20 +5,64 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculatrice"
         mc:Ignorable="d"
-        Title="Calculatrice" Height="730" Width="600">
+        Title="Calculatrice" Height="740" Width="615" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="AbstractButton" >
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="Button" x:Key="MemButton" BasedOn="{StaticResource AbstractButton}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.092"/>
+                        <GradientStop Color="Gray" Offset="0.314"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="FctButton" BasedOn="{StaticResource AbstractButton}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.092"/>
+                        <GradientStop Color="#FF6C2727" Offset="0.314"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="NumButton" BasedOn="{StaticResource AbstractButton}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="White" Offset="0.092"/>
+                        <GradientStop Color="#FF271C1C" Offset="0.314"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <StackPanel>
             <StatusBar Height="30" 
                        Background="Black">
-                <Label Content="Calculatrice de dany" 
-                       Foreground="White">
+                <Label Content="memory value : " 
+                       Foreground="White"
+                       Width="90">
+                </Label>
+                <Label Content="0" 
+                       Foreground="White"
+                       Name="lbMemValue">
                 </Label>
             </StatusBar>
             <TextBox Height="70" 
                      Text="0" 
                      FontSize="50" 
                      Background="AntiqueWhite" 
-                     TextAlignment="Right">
+                     TextAlignment="Right"
+                     Name="tbDisplay">
             </TextBox>
             <Grid Background="Black">
                 <Grid.ColumnDefinitions>
@@ -35,6 +79,147 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
+                <Button Name="btMc"
+                        Content="mc"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Style="{StaticResource MemButton}">
+                </Button>
+                <Button Name="btMplus"
+                        Content="m+"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Style="{StaticResource MemButton}">
+                </Button>
+                <Button Name="btMmoins"
+                        Content="m-"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Style="{StaticResource MemButton}">
+                </Button>
+                <Button Name="btMr"
+                        Content="mr"
+                        Grid.Column="3"
+                        Grid.Row="0"
+                        Style="{StaticResource MemButton}">
+                </Button>
+                <Button Name="btClear"
+                        Content="C"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Style="{StaticResource FctButton}">
+                </Button>
+                <Button Name="btPlusMoins"
+                        Content="+-"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Style="{StaticResource FctButton}">
+                </Button>
+                <Button Name="btDiv"
+                        Content="/"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Style="{StaticResource FctButton}">
+                </Button>
+                <Button Name="btMult"
+                        Content="X"
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        Style="{StaticResource FctButton}">
+                </Button>
+                <Button Name="btMinus"
+                        Content="-"
+                        Grid.Column="3"
+                        Grid.Row="2"
+                        Style="{StaticResource FctButton}">
+                </Button>
+                <Button Name="btPlus"
+                        Content="+"
+                        Grid.Column="3"
+                        Grid.Row="3"
+                        Style="{StaticResource FctButton}">
+                </Button>
+                <Button Name="btEqual"
+                        Content="="
+                        Foreground="Black"
+                        Grid.Column="3"
+                        Grid.Row="4"
+                        Grid.RowSpan="2"
+                        Style="{StaticResource AbstractButton}">
+                        <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="White" Offset="0.092"/>
+                            <GradientStop Color="Orange" Offset="0.314"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button Name="bt7"
+                        Content="7"
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt8"
+                        Content="8"
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt9"
+                        Content="9"
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt4"
+                        Content="4"
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt5"
+                        Content="5"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt6"
+                        Content="6"
+                        Grid.Column="2"
+                        Grid.Row="3"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt1"
+                        Content="1"
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt2"
+                        Content="2"
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt3"
+                        Content="3"
+                        Grid.Column="2"
+                        Grid.Row="4"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="bt0"
+                        Content="0"
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource NumButton}">
+                </Button>
+                <Button Name="btComma"
+                        Content=","
+                        Grid.Column="2"
+                        Grid.Row="5"
+                        Style="{StaticResource NumButton}">
+                </Button>
             </Grid>
         </StackPanel>
     </Grid>
